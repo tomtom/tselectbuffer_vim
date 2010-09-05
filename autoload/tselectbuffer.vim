@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2010-01-03.
-" @Last Change: 2010-07-31.
-" @Revision:    0.0.15
+" @Last Change: 2010-09-05.
+" @Revision:    0.0.16
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -32,7 +32,7 @@ if !exists('g:tselectbuffer_handlers')
                 \ {'key': 20, 'agent': s:SNR().'AgentTabBuffer',    'key_name': '<c-t>', 'help': 'Show in tab'},
                 \ {'key': 22, 'agent': s:SNR().'AgentVSplitBuffer', 'key_name': '<c-v>', 'help': 'Show in vsplit window'},
                 \ {'key': 23, 'agent': s:SNR().'AgentOpenBuffer',   'key_name': '<c-w>', 'help': 'View in current window'},
-                \ {'key': 60, 'agent': s:SNR().'AgentJumpBuffer',   'key_name': '<',     'help': 'Jump to opened window/tab à la swb=opentab'},
+                \ {'key': 60, 'agent': s:SNR().'AgentJumpBuffer',   'key_name': '<',     'help': 'Jump to opened window/tab a la swb=opentab'},
                 \ {'return_agent': s:SNR() .'Callback'},
                 \ ]
     if !g:tselectbuffer_autopick
