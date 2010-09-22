@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2010-01-03.
-" @Last Change: 2010-09-05.
-" @Revision:    0.0.16
+" @Last Change: 2010-09-22.
+" @Revision:    0.0.19
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -16,16 +16,21 @@ function! s:SNR()
 endf
 
 " Possible values:
-"   bufnr :: Default behaviour
-"   mru   :: Sort buffers according to most recent use
+"   bufnr    :: Default behaviour
+"   mru      :: Sort buffers according to most recent use
+"   basename :: Sort by the file's basename (last component)
 "
 " NOTE: MRU order works on second invocation only. If you want to always 
 " use MRU order, call tlib#buffer#EnableMRU() in your ~/.vimrc file.
-TLet g:tselectbuffer_order = 'bufnr'
+TLet g:tselectbuffer#order = 'bufnr'
 
-if !exists('g:tselectbuffer_autopick') | let g:tselectbuffer_autopick = 1 | endif
-if !exists('g:tselectbuffer_handlers')
-    let g:tselectbuffer_handlers = [
+" If non-null, automatically pick the last item in the list. I.e. if you 
+" start typing a name and there is only one item left matching that name 
+" it is automatically picked and you don't have to type <cr>.
+TLet g:tselectbuffer#autopick = 1
+
+if !exists('g:tselectbuffer#handlers')
+    let g:tselectbuffer#handlers = [
                 \ {'key':  4, 'agent': s:SNR().'AgentDeleteBuffer', 'key_name': '<c-d>', 'help': 'Delete buffer(s)'},
                 \ {'key': 21, 'agent': s:SNR().'AgentRenameBuffer', 'key_name': '<c-u>', 'help': 'Rename buffer(s)'},
                 \ {'key': 19, 'agent': s:SNR().'AgentSplitBuffer',  'key_name': '<c-s>', 'help': 'Show in split window'},
@@ -35,13 +40,13 @@ if !exists('g:tselectbuffer_handlers')
                 \ {'key': 60, 'agent': s:SNR().'AgentJumpBuffer',   'key_name': '<',     'help': 'Jump to opened window/tab a la swb=opentab'},
                 \ {'return_agent': s:SNR() .'Callback'},
                 \ ]
-    if !g:tselectbuffer_autopick
-        call add(g:tselectbuffer_handlers, {'pick_last_item': 0})
+    if !g:tselectbuffer#autopick
+        call add(g:tselectbuffer#handlers, {'pick_last_item': 0})
     endif
 endif
 
 function! s:PrepareSelectBuffer()
-    let [s:selectbuffer_nr, s:selectbuffer_list] = tlib#buffer#GetList(s:selectbuffer_hidden, 1, g:tselectbuffer_order)
+    let [s:selectbuffer_nr, s:selectbuffer_list] = tlib#buffer#GetList(s:selectbuffer_hidden, 1, g:tselectbuffer#order)
     let s:selectbuffer_alternate = ''
     let s:selectbuffer_alternate_n = 0
     for b in s:selectbuffer_list
@@ -207,12 +212,12 @@ endf
 function! tselectbuffer#Select(show_hidden)
     let s:selectbuffer_hidden = a:show_hidden
     let bs  = s:PrepareSelectBuffer()
-    let bhs = copy(g:tselectbuffer_handlers)
+    let bhs = copy(g:tselectbuffer#handlers)
     " call add(bhs, {'index_table': s:selectbuffer_nr})
     if !empty(s:selectbuffer_alternate_n)
         call add(bhs, {'initial_index': s:selectbuffer_alternate_n})
     endif
-    let msg = printf('Select buffer (%s)', g:tselectbuffer_order)
+    let msg = printf('Select buffer (%s)', g:tselectbuffer#order)
     let b = tlib#input#List('m', msg, bs, bhs)
 endf
 

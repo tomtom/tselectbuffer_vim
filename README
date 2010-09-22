@@ -1,5 +1,3 @@
-*tselectbuffer.txt*  A simplicistic buffer selector/switcher
-
 This plugin provides a simple buffer selector. It doesn't have all the 
 features other buffer selectors have but can be useful for quickly 
 switching to a different buffer or for deleting buffers.
