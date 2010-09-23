@@ -51,7 +51,8 @@ Also available via git: http://github.com/tomtom/vimtlib/
 Contents~
 
         :TSelectBuffer ............... |:TSelectBuffer|
-        g:tselectbuffer_order ........ |g:tselectbuffer_order|
+        g:tselectbuffer#order ........ |g:tselectbuffer#order|
+        g:tselectbuffer#autopick ..... |g:tselectbuffer#autopick|
         tselectbuffer#Select ......... |tselectbuffer#Select()|
 
 
@@ -65,14 +66,16 @@ plugin/tselectbuffer.vim~
 ========================================================================
 autoload/tselectbuffer.vim~
 
-                                                    *g:tselectbuffer_order*
-g:tselectbuffer_order          (default: 'bufnr')
-    Possible values:
-      bufnr :: Default behaviour
-      mru   :: Sort buffers according to most recent use
-    
-    NOTE: MRU order works on second invocation only. If you want to always 
-    use MRU order, call tlib#buffer#EnableMRU() in your ~/.vimrc file.
+                                                    *g:tselectbuffer#order*
+g:tselectbuffer#order          (default: 'bufnr')
+    For possible values please see the documentation of 
+    |tlib#buffer#GetList()|'s order argument.
+
+                                                    *g:tselectbuffer#autopick*
+g:tselectbuffer#autopick       (default: 1)
+    If non-null, automatically pick the last item in the list. I.e. if you 
+    start typing a name and there is only one item left matching that name 
+    it is automatically picked and you don't have to type <cr>.
 
                                                     *tselectbuffer#Select()*
 tselectbuffer#Select(show_hidden)

@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2010-01-03.
-" @Last Change: 2010-09-22.
-" @Revision:    0.0.19
+" @Last Change: 2010-09-23.
+" @Revision:    0.0.21
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -15,13 +15,8 @@ function! s:SNR()
     return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSNR$')
 endf
 
-" Possible values:
-"   bufnr    :: Default behaviour
-"   mru      :: Sort buffers according to most recent use
-"   basename :: Sort by the file's basename (last component)
-"
-" NOTE: MRU order works on second invocation only. If you want to always 
-" use MRU order, call tlib#buffer#EnableMRU() in your ~/.vimrc file.
+" For possible values please see the documentation of 
+" |tlib#buffer#GetList()|'s order argument.
 TLet g:tselectbuffer#order = 'bufnr'
 
 " If non-null, automatically pick the last item in the list. I.e. if you 
