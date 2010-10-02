@@ -3,15 +3,15 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-04-15.
-" @Last Change: 2010-07-31.
-" @Revision:    326
+" @Last Change: 2010-10-02.
+" @Revision:    328
 " GetLatestVimScripts: 1866 1 tselectbuffer.vim
 
 if &cp || exists("loaded_tselectbuffer")
     finish
 endif
-if !exists('loaded_tlib') || loaded_tlib < 24
-    echoerr 'tlib >= 0.24 is required'
+if !exists('loaded_tlib') || loaded_tlib < 40
+    echoerr 'tlib >= 0.40 is required'
     finish
 endif
 let loaded_tselectbuffer = 7
@@ -54,4 +54,6 @@ page (if any)
 - Moved the definition of some variables from plugin/tselectbuffer.vim 
 to autoload/tselectbuffer.vim
 - Delete buffer: New options: None, all
+- Support for g:tselectbuffer#order = "basename"
+- Require tlib 0.40
 
