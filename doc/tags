@@ -1,0 +1,6 @@
+:TSelectBuffer	tselectbuffer.txt	/*:TSelectBuffer*
+autoload/tselectbuffer.vim	tselectbuffer.txt	/*autoload\/tselectbuffer.vim*
+g:tselectbuffer#autopick	tselectbuffer.txt	/*g:tselectbuffer#autopick*
+g:tselectbuffer#order	tselectbuffer.txt	/*g:tselectbuffer#order*
+plugin/tselectbuffer.vim	tselectbuffer.txt	/*plugin\/tselectbuffer.vim*
+tselectbuffer.txt	tselectbuffer.txt	/*tselectbuffer.txt*
